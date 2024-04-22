@@ -1,18 +1,20 @@
-// index.js
+var express = require("express");
+var app = express();
 
-const express = require('express');
-const app = express();
-const port = 3000;
-
-// Route to add two numbers
-app.get('/add/:num1/:num2', (req, res) => {
-  const num1 = parseInt(req.params.num1);
-  const num2 = parseInt(req.params.num2);
-  const sum = num1 + num2;
-  res.send(`The sum of ${num1} and ${num2} is ${sum}`);
+app.get("/", function (req, res) {
+  res.send('{ "response": "Hello, Welcome to Valaxy" }');
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}`);
+app.get("/will", function (req, res) {
+  res.send('{ "response": "Hello World" }');
 });
+app.get("/ready", function (req, res) {
+  res.send('{ "response": " Great!, It works!" }');
+});
+
+//listen to port 3000 by default
+app.listen(process.env.PORT || 3000, function () {
+  console.log("App listening on port 3000!");
+});
+
+module.exports = app;
